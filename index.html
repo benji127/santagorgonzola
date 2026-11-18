@@ -3,6 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Google Tag Manager: load only after analytics consent. -->
+<script>
+(function(){
+  'use strict';
+  const key='sg-analytics-consent-v1';
+  let choice=null, loaded=false;
+  try{choice=localStorage.getItem(key);}catch(e){}
+  window.dataLayer=window.dataLayer||[];
+  // Consent commands use the same arguments-object format as gtag().
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  function load(){
+    if(loaded||choice!=='granted')return;
+    loaded=true;
+    gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+    window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});
+    const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=GTM-PCMD8WW3';s.setAttribute('data-sg-gtm-runtime','');document.head.appendChild(s);
+  }
+  window.sgAnalytics={
+    get choice(){return choice;},
+    setChoice(value){
+      if(value!=='granted'&&value!=='denied')return;
+      choice=value;try{localStorage.setItem(key,value);}catch(e){}
+      if(value==='granted')load();
+      else if(loaded){gtag('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});window.location.reload();}
+    },
+    track(event,params){if(choice==='granted'&&loaded)window.dataLayer.push(Object.assign({},params,{event}));}
+  };
+  load();
+})();
+</script>
 <title>Santa Gorgonzola – Handmade cardboard decorations</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -300,6 +331,9 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
 .sg-theme-select[aria-pressed="true"]{box-shadow:inset 0 0 0 3px var(--teal);border-radius:18px}.sg-theme-select[aria-pressed="true"] .sg-theme-cta{color:var(--teal)}
 .sg-selected-theme img{width:clamp(84px,18vw,140px);height:clamp(84px,18vw,140px);flex-shrink:0}.sg-selected-theme strong{font-size:19px;margin-bottom:5px}.sg-theme-form #sgThemeDetails{min-height:110px}
 
+.sg-analytics-banner{position:fixed;z-index:55;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:16px;right:16px;max-width:460px;padding:18px;background:#202022;border:1px solid #555;border-radius:18px;box-shadow:0 10px 35px #0009;color:var(--text)}
+.sg-analytics-banner[hidden]{display:none!important}.sg-analytics-banner h3{font-size:21px;margin-bottom:8px}.sg-analytics-banner p{font-size:14px;color:var(--muted);margin:0 0 12px}.sg-analytics-actions{display:flex;flex-wrap:wrap;gap:10px}.sg-analytics-actions button{flex:1}.sg-analytics-settings{border:none;background:none;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.sg-form-status{margin:0;padding:14px 16px;border-radius:12px;font-size:15px;font-weight:700;background:#272729;border:1px solid #555;color:var(--text);overflow-wrap:anywhere}.sg-form-status[hidden]{display:none!important}.sg-form-status[data-state="success"]{background:#14352e;border-color:var(--teal);color:#c6ffed}.sg-form-status[data-state="error"]{background:#402127;border-color:#ff7777;color:#ffd5d5}.sg-form-status[data-state="sending"]{border-color:var(--yellow)}.sg-theme-form button:disabled{opacity:.6;cursor:wait;transform:none}.sg-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}.sg-inquiry-dialog{width:min(640px,calc(100% - 26px));max-width:640px}.sg-inquiry-dialog .sg-theme-form{margin-top:20px;padding:0;border:0;background:transparent}.sg-inquiry-summary{margin:0;padding:14px;border:1px solid #454545;border-radius:13px;background:#252527;color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}.sg-inquiry-summary[hidden]{display:none!important}.sg-contact-button{border:0;background:none;color:var(--teal);padding:0;font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}.sg-form-note a{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -526,8 +560,9 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
         <div class="panel"><div><div class="letters">A 1 B 2</div><small>3D letters and numbers, any colour</small></div></div>
         <div class="sg-theme-note"><strong>Need inspiration?</strong><br><a href="#themes">Browse our theme gallery ↗</a><br>We can also adapt a design to a new character, hobby, favorite color or any special shape.</div>
       </div>
-      <form id="orderForm" class="sg-theme-form">
+      <form id="orderForm" class="sg-theme-form" method="POST" action="https://formsubmit.co/santagorgonzola27@gmail.com">
         <h3>Tell us about your design</h3><p class="note">Fields marked * are required. We will confirm the quote, availability and date by email.</p>
+        <input type="hidden" name="_subject" value="Santa Gorgonzola — Custom order request"><input type="hidden" name="_template" value="table"><div class="sg-honeypot" aria-hidden="true"><label>Leave blank<input name="_honey" tabindex="-1" autocomplete="off"></label></div>
         <div class="sg-form-two"><label>Your name *<input name="n" required autocomplete="name" maxlength="100"></label><label>Email address *<input name="email" type="email" autocomplete="email" required maxlength="180" placeholder="you@example.com"></label></div>
         <div class="sg-form-two"><label>Occasion *<select name="o" id="sgOrderEvent" required><option value="">Select your event</option><option>Birthday</option><option>Baby shower</option><option>Graduation</option><option>Wedding</option><option>Anniversary</option><option>Retirement</option><option>Christmas</option><option>Winter holiday</option><option>Mother’s Day</option><option>Other celebration</option></select></label><label>Date needed<input name="d" type="date"></label></div>
         <label>Choose a theme<select name="theme" id="sgOrderTheme"><option value="">Choose a theme / undecided</option><option value="savory">Salty Snack Celebration</option><option value="candy">Candy Wonderland</option><option value="christmas">Christmas Magic</option><option value="toy-story">Toy Story-inspired</option><option value="lol-dolls">L.O.L. Surprise-inspired</option><option value="bluey">Bluey-inspired</option><option value="flowers">Blooming Letters</option><option value="lights">Light-Up Celebration</option><option value="retirement">Golden Retirement</option><option value="dinosaurs">Dinosaur Adventure</option><option value="space">Space Explorer</option><option value="princess">Princess &amp; Unicorn</option><option value="sports">Sports Fan</option><option value="race-cars">Race Car Party</option><option value="gaming">Gaming Party</option><option value="mermaid">Under the Sea</option><option value="rainbow">Rainbow &amp; Butterflies</option><option value="balloons">Balloon Celebration</option><option value="custom">My own theme</option></select></label>
@@ -540,8 +575,9 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
         <fieldset><legend>Optional decorations (choose any)</legend><div class="sg-theme-addons"><label><input type="checkbox" name="addon" value="Figurines / toys"> Figurines / toys</label><label><input type="checkbox" name="addon" value="Fresh or artificial flowers"> Flowers</label><label><input type="checkbox" name="addon" value="LED fairy lights"> LED fairy lights</label><label><input type="checkbox" name="addon" value="Balloons and ribbons"> Balloons &amp; ribbons</label><label><input type="checkbox" name="addon" value="Personalized name / message"> Personalized message</label><label><input type="checkbox" name="addon" value="Customer-supplied decorations"> I'll supply decorations</label></div></fieldset>
         <div class="sg-form-two"><label>Preferred colors<input name="colors" maxlength="120" placeholder="Blue, pink, gold…"></label><label>Budget range (CAD, optional)<input name="budget" maxlength="80" placeholder="e.g. $75–$100"></label></div>
         <label>More information, allergies or special requests<textarea name="notes" maxlength="2000" placeholder="Favorite character, age, theme, dimensions, dietary needs, delivery location or any other details…"></textarea></label>
-        <button class="btn" type="submit">Email my custom order request ↗</button>
-        <p class="note">This opens your email app with your completed request. No payment is taken. For reference photos, attach them to the email before sending. Or write to <a href="mailto:santagorgonzola27@gmail.com">santagorgonzola27@gmail.com</a>.</p>
+        <button class="btn" type="submit">Send my custom order request →</button>
+        <p id="sgOrderStatus" class="sg-form-status" role="status" aria-live="polite" hidden></p>
+        <p class="note sg-form-note">Your request is sent directly to our team through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. No payment is taken. We'll reply to your email to discuss your design, reference photos and quote.</p>
       </form>
     </div>
   </section>
@@ -570,7 +606,7 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
       <div>
         <a class="brand" href="#top" role="img" aria-label="Santa Gorgonzola home"></a>
         <p style="margin-top:22px">Handmade cardboard decorations that make every celebration unforgettable. Based in Canada, shipping nationwide.</p>
-        <p style="margin-top:10px"><a href="mailto:santagorgonzola27@gmail.com">santagorgonzola27@gmail.com</a></p>
+        <p style="margin-top:10px"><button class="sg-contact-button" type="button" id="sgContactOpen">Send us a message →</button><br><small>santagorgonzola27@gmail.com</small></p>
         <div class="social">
           <a href="https://www.instagram.com/santagorgonzola" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg></a>
           <a href="https://www.tiktok.com/@santagorgonzola" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2 4.2 5 4.4"/></svg></a>
@@ -581,11 +617,62 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
       <div><h4>Shop</h4><ul><li><a href="#shop">Charcuterie Boards</a></li><li><a href="#shop">Numbers &amp; Letters</a></li><li><a href="#shop">3D Fillable Decor</a></li><li><a href="#shop">Patches &amp; Pins</a></li><li><a href="#shop">Stickers</a></li><li><a href="#shop">Gifts</a></li></ul></div>
       <div><h4>Info</h4><ul><li><a href="#about">About Us</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#themes">Celebration Themes</a></li><li><a href="#custom">Custom Orders</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     </div>
-    <div class="fine">© 2026 Santa Gorgonzola. All rights reserved.</div>
+    <div class="fine">© 2026 Santa Gorgonzola. All rights reserved. · <button type="button" id="sgAnalyticsSettings" class="sg-analytics-settings">Analytics &amp; privacy choices</button></div>
   </div>
 <p class="sg-admin-footer"><button type="button" id="sgAdminOpen" class="sg-admin-link">Inventory Studio <small>(local editor)</small> ↗</button></p>
 </footer>
+<aside id="sgAnalyticsBanner" class="sg-analytics-banner" aria-labelledby="sgAnalyticsHeading" hidden>
+  <h3 id="sgAnalyticsHeading">Help us improve your experience</h3>
+  <p>We use optional Google Analytics to understand which products and themes visitors enjoy. Analytics cookies are only enabled if you accept. You can change your choice in the footer at any time. Your order form details are not included in our custom analytics events.</p>
+  <div class="sg-analytics-actions"><button class="btn sm sg-outline" id="sgAnalyticsDecline" type="button">Decline analytics</button><button class="btn sm" id="sgAnalyticsAccept" type="button">Accept analytics</button></div>
+</aside>
 <div id="toast" role="status" aria-live="polite"></div>
+<script>
+ (function(){
+  const banner=document.getElementById('sgAnalyticsBanner'), api=window.sgAnalytics;
+  banner.hidden=api.choice==='granted'||api.choice==='denied';
+  document.getElementById('sgAnalyticsSettings').addEventListener('click',()=>{banner.hidden=false;document.getElementById('sgAnalyticsDecline').focus();});
+  document.getElementById('sgAnalyticsAccept').addEventListener('click',()=>{banner.hidden=true;api.setChoice('granted');});
+  document.getElementById('sgAnalyticsDecline').addEventListener('click',()=>{banner.hidden=true;api.setChoice('denied');});
+  document.addEventListener('click',e=>{
+    const link=e.target.closest('.social a');
+    if(link)api.track('social_click',{platform:link.getAttribute('aria-label')});
+    const view=e.target.closest('[data-sg-view]'), inquiry=e.target.closest('[data-sg-inquire]');
+    if(view)api.track('product_view_click',{product_id:view.dataset.sgView});
+    if(inquiry)api.track('product_inquiry_click',{product_id:inquiry.dataset.sgInquire});
+    if(e.target.closest('#sgInquiryCheckout'))api.track('cart_inquiry_click',{});
+  });
+ })();
+</script>
+<script>
+// Shared direct-to-email form transport. No private mail credentials belong in this static website.
+(function(){
+  const endpoint='https://formsubmit.co/ajax/santagorgonzola27@gmail.com';
+  const busy=new WeakSet();
+  function status(el,state,message){el.hidden=false;el.dataset.state=state;el.textContent=message;}
+  window.sgForms={async send(form,statusEl,subject,fields){
+    if(busy.has(form))return false;
+    const button=form.querySelector('button[type="submit"]');
+    const label=button.textContent;
+    const trap=new FormData(form).get('_honey');
+    if(trap)return false;
+    busy.add(form);button.disabled=true;button.textContent='Sending…';form.setAttribute('aria-busy','true');
+    status(statusEl,'sending','Sending your request directly to our team…');
+    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),20000);
+    try{
+      const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:controller.signal,body:JSON.stringify(Object.assign({},fields,{_subject:subject,_template:'table',_honey:'',_url:'https://santagorgonzola.com/'}))});
+      const data=await response.json();
+      if(!response.ok||(data.success!==true&&data.success!=='true')||/activat|confirm your email/i.test(String(data.message||'')))throw new Error('Form not confirmed');
+      status(statusEl,'success','✓ Thank you! Your request has been received for delivery. We’ll reply to your email to confirm the details.');
+      window.sgAnalytics?.track('generate_lead',{inquiry_type:fields.inquiry_type});
+      return true;
+    }catch(err){
+      status(statusEl,'error','We couldn’t confirm your request. Your details are still here. Please try again in a moment or contact santagorgonzola27@gmail.com.');
+      return false;
+    }finally{clearTimeout(timer);busy.delete(form);button.disabled=false;button.textContent=label;form.removeAttribute('aria-busy');}
+  }};
+})();
+</script>
 <script>
 
 (function(){
@@ -615,13 +702,13 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
   filters.forEach(btn=>btn.addEventListener('click',()=>{group=btn.dataset.themeFilter;updateGallery();}));
   eventFilter.addEventListener('change',()=>{eventField.value=eventFilter.value;updateGallery();});
   eventField.addEventListener('change',()=>{eventFilter.value=eventField.value;updateGallery();});
-  themeButtons.forEach(btn=>btn.addEventListener('click',()=>{selectTheme(btn.dataset.chooseTheme);if(eventFilter.value)eventField.value=eventFilter.value;form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});themeField.focus({preventScroll:true});}));
-  themeField.addEventListener('change',()=>selectTheme(themeField.value));
-  form.addEventListener('submit',e=>{
+  themeButtons.forEach(btn=>btn.addEventListener('click',()=>{selectTheme(btn.dataset.chooseTheme);window.sgAnalytics?.track('select_theme',{theme:btn.dataset.chooseTheme});if(eventFilter.value)eventField.value=eventFilter.value;form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});themeField.focus({preventScroll:true});}));
+  themeField.addEventListener('change',()=>{selectTheme(themeField.value);if(themes[themeField.value])window.sgAnalytics?.track('select_theme',{theme:themeField.value});});
+  form.addEventListener('submit',async e=>{
     e.preventDefault();const f=new FormData(form), val=(key)=>String(f.get(key)||'').trim()||'Not specified';
     const chosen=themeField.options[themeField.selectedIndex].text;
-    const body=['Hello Santa Gorgonzola,','','I would like a custom handmade cardboard creation.','','Name: '+val('n'),'Email: '+val('email'),'Event: '+val('o'),'Date needed: '+val('d'),'Theme: '+chosen,'Theme personalization: '+val('themeDetails'),'Shape type: '+val('shapeType'),'Letters / numbers / shape: '+val('p'),'Size: '+val('size'),'Quantity: '+val('qty'),'Filling: '+val('filling'),'Cardboard finish: '+val('finish'),'Construction: '+val('construction'),'Decorations: '+(f.getAll('addon').join(', ')||'Not specified'),'Colors: '+val('colors'),'Budget (CAD): '+val('budget'),'Notes: '+val('notes'),'','Please confirm availability and pricing. Thank you!'].join('\n');
-    window.location.href='mailto:santagorgonzola27@gmail.com?subject='+encodeURIComponent('Custom order request — '+val('p'))+'&body='+encodeURIComponent(body);
+    const delivered=await window.sgForms.send(form,byId('sgOrderStatus'),'Santa Gorgonzola — Custom order request',{inquiry_type:'custom_order',name:val('n'),email:val('email'),Occasion:val('o'),'Date needed':val('d'),Theme:chosen,'Theme personalization':val('themeDetails'),'Shape type':val('shapeType'),'Letters / numbers / shape':val('p'),Size:val('size'),Quantity:val('qty'),Filling:val('filling'),'Cardboard finish':val('finish'),Construction:val('construction'),Decorations:f.getAll('addon').join(', ')||'Not specified',Colors:val('colors'),'Budget (CAD)':val('budget'),Notes:val('notes')});
+    if(delivered){form.reset();eventFilter.value='';previousSuggestion='';selectTheme('');updateGallery();}
   });
   updateGallery();selectTheme(themeField.value);
 })();
@@ -629,7 +716,40 @@ footer .brand{height:68px}.hero-icon{width:96px;height:96px;margin:0 auto 20px;b
 </script>
 
 <dialog id="sgProductDialog" class="sg-dialog sg-product-dialog" aria-labelledby="sgProductDialogTitle"><button type="button" class="sg-dialog-close" data-sg-close="sgProductDialog" aria-label="Close product details">×</button><div id="sgProductDetail"></div></dialog>
-<dialog id="sgCartDialog" class="sg-dialog sg-cart-dialog" aria-labelledby="sgCartTitle"><button type="button" class="sg-dialog-close" data-sg-close="sgCartDialog" aria-label="Close bag">×</button><div class="sg-dialog-heading"><p class="sg-overline">YOUR SELECTION</p><h2 id="sgCartTitle">Your shopping bag</h2><p class="sg-muted">This website prepares an order inquiry; online payment is not active.</p></div><div id="sgCartItems" class="sg-cart-items"></div><div class="sg-cart-bottom"><p id="sgCartTotal"></p><button class="btn" id="sgInquiryCheckout" type="button">Email this order request ↗</button></div></dialog>
+<dialog id="sgCartDialog" class="sg-dialog sg-cart-dialog" aria-labelledby="sgCartTitle"><button type="button" class="sg-dialog-close" data-sg-close="sgCartDialog" aria-label="Close bag">×</button><div class="sg-dialog-heading"><p class="sg-overline">YOUR SELECTION</p><h2 id="sgCartTitle">Your shopping bag</h2><p class="sg-muted">Send your selection directly to our team. Online payment is not active.</p></div><div id="sgCartItems" class="sg-cart-items"></div><div class="sg-cart-bottom"><p id="sgCartTotal"></p><button class="btn" id="sgInquiryCheckout" type="button">Continue to order inquiry →</button></div></dialog>
+<dialog id="sgInquiryDialog" class="sg-dialog sg-inquiry-dialog" aria-labelledby="sgInquiryTitle">
+  <button type="button" class="sg-dialog-close" id="sgInquiryClose" aria-label="Close inquiry">×</button>
+  <div class="sg-dialog-heading"><p class="sg-overline">SANTA GORGONZOLA · LET'S CELEBRATE</p><h2 id="sgInquiryTitle">Send us a message</h2><p class="sg-muted">We'll respond by email with the next steps.</p></div>
+  <form id="sgInquiryForm" class="sg-theme-form" method="POST" action="https://formsubmit.co/santagorgonzola27@gmail.com">
+    <div id="sgInquirySummary" class="sg-inquiry-summary" hidden></div>
+    <input type="hidden" name="_subject" value="Santa Gorgonzola — Customer inquiry"><input type="hidden" name="_template" value="table"><div class="sg-honeypot" aria-hidden="true"><label>Leave blank<input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+    <label>Your name *<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label>Email address *<input name="email" type="email" autocomplete="email" required maxlength="180" placeholder="you@example.com"></label>
+    <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+    <label>Additional information<textarea name="message" id="sgInquiryMessage" maxlength="2000" rows="4" placeholder="Tell us about your request…"></textarea></label>
+    <button type="submit" class="btn">Send request →</button>
+    <p id="sgInquiryStatus" class="sg-form-status" role="status" aria-live="polite" hidden></p>
+    <p class="note sg-form-note">Sent directly to our team using <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. No payment is taken.</p>
+  </form>
+</dialog>
+<script>
+(function(){
+  const dialog=document.getElementById('sgInquiryDialog'),form=document.getElementById('sgInquiryForm'),summary=document.getElementById('sgInquirySummary'),status=document.getElementById('sgInquiryStatus');
+  let request={kind:'contact',subject:'Santa Gorgonzola — General inquiry',details:''};
+  window.sgInquiry={open(config){
+    if(form.getAttribute('aria-busy')==='true')return;
+    request=config;form.reset();status.hidden=true;status.textContent='';summary.textContent=config.details;summary.hidden=!config.details;
+    document.getElementById('sgInquiryTitle').textContent=config.title;
+    document.getElementById('sgInquiryMessage').required=config.kind==='contact';
+    ['sgProductDialog','sgCartDialog'].forEach(id=>{const d=document.getElementById(id);if(d.open)d.close();});
+    if(!dialog.open)dialog.showModal();
+  }};
+  document.getElementById('sgContactOpen').addEventListener('click',()=>window.sgInquiry.open({kind:'contact',subject:'Santa Gorgonzola — General inquiry',details:'',title:'Send us a message'}));
+  document.getElementById('sgInquiryClose').addEventListener('click',()=>{if(form.getAttribute('aria-busy')!=='true')dialog.close();});
+  dialog.addEventListener('cancel',e=>{if(form.getAttribute('aria-busy')==='true')e.preventDefault();});
+  form.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(form);const ok=await window.sgForms.send(form,status,request.subject,{inquiry_type:request.kind,name:String(f.get('name')||'').trim(),email:String(f.get('email')||'').trim(),phone:String(f.get('phone')||'').trim(),'Products / selection':request.details,message:String(f.get('message')||'').trim()});if(ok)form.reset();});
+})();
+</script>
 <dialog id="sgAdminDialog" class="sg-dialog sg-admin-dialog" aria-labelledby="sgAdminTitle"><button type="button" class="sg-dialog-close" data-sg-close="sgAdminDialog" aria-label="Close inventory manager">×</button>
   <div class="sg-admin-header"><p class="sg-overline">SANTA GORGONZOLA · STORE OWNER WORKSPACE</p><h2 id="sgAdminTitle">Inventory Studio</h2><p>Manage ready-to-sell gifts, patch photos, quantities, descriptions and prices. <strong>Local editing mode:</strong> changes save in this browser only until you export and replace the published <code>index.html</code>. This is not a secure, multi-user admin system.</p></div>
   <div class="sg-admin-stats" id="sgAdminStats"></div>
@@ -692,12 +812,12 @@ function updateCategories(){const cats=[...new Set(items.filter(p=>p.visible).ma
 function filteredItems(){const q=search.trim().toLowerCase();const result=items.filter(p=>p.visible && (category==='All'||p.category===category) && [p.title,p.id,p.description,p.category].join(' ').toLowerCase().includes(q));result.sort((a,b)=>{if(sort==='name')return a.title.localeCompare(b.title);if(sort==='price-asc')return (a.price??Infinity)-(b.price??Infinity);if(sort==='price-desc')return (b.price??-Infinity)-(a.price??-Infinity);return Number(b.featured)-Number(a.featured) || a.id.localeCompare(b.id);});return result;}
 function renderCatalogue(){updateCategories();const list=filteredItems();$('sgCatalogCount').textContent=`${items.filter(x=>x.visible).length} designs in our shop`;$('sgPageSummary').textContent=list.length?`Showing ${Math.min(visibleCount,list.length)} of ${list.length} matching products`:'No matching products';$('sgShowMore').hidden=visibleCount>=list.length;const shown=list.slice(0,visibleCount);$('sgProductGrid').innerHTML=shown.length?shown.map(p=>{const ready=isReady(p),pic=safeSrc(p.image),stock=ready?`${p.quantity} available`:'Ask for availability';return `<article class="sg-product-card"><button type="button" class="sg-card-image-button" data-sg-view="${safeText(p.id)}" aria-label="View ${safeText(p.title)}">${pic?`<img loading="lazy" src="${safeText(pic)}" alt="${safeText(p.title)}">`:'<div style="height:220px;display:grid;place-items:center;color:#555">Photo coming soon</div>'}<span class="sg-item-badge">${safeText(p.category)}</span></button><div class="sg-product-info"><span class="sg-product-sku">${safeText(p.id)}</span><h3>${safeText(p.title)}</h3><p>${safeText(p.description)}</p><div class="sg-product-price">${p.price!==null && p.price>0?currency(p.price):'Price on request'}</div><span class="sg-stock ${ready?'in-stock':''}">${stock}</span><div class="sg-card-actions">${ready?`<button type="button" class="btn sm" data-sg-add="${safeText(p.id)}">Add to bag +</button>`:`<button type="button" class="btn sm sg-outline" data-sg-inquire="${safeText(p.id)}">Ask about item ↗</button>`}</div></div></article>`;}).join(''):'<div class="sg-empty">No matching products. Try another search or category.</div>';}
 function findProduct(id){return items.find(p=>p.id===id);}
-function askProduct(p){const subject=`Santa Gorgonzola — Item ${p.id}`;const body=`Hello Santa Gorgonzola,\n\nI am interested in this product:\n${p.title}\nCode: ${p.id}\nCategory: ${p.category}\n\nPlease confirm its price, availability and pickup/shipping options.\n\nThank you!`;window.location.href='mailto:santagorgonzola27@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);}
+function askProduct(p){window.sgInquiry.open({kind:'product',subject:'Santa Gorgonzola — Product inquiry',title:'Ask about this product',details:`${p.title}\nCode: ${p.id}\nCategory: ${p.category}\nPrice: ${p.price!=null&&p.price>0?currency(p.price):'On request'}\nPlease confirm availability and pickup/shipping options.`});}
 function showProduct(id){const p=findProduct(id);if(!p)return;const ready=isReady(p);$('sgProductDetail').innerHTML=`<div class="sg-detail"><div>${p.image?`<img alt="${safeText(p.title)}" src="${safeText(safeSrc(p.image))}">`:''}</div><div><p class="sg-overline">${safeText(p.category)} · ${safeText(p.id)}</p><h2 id="sgProductDialogTitle">${safeText(p.title)}</h2><p>${safeText(p.description)}</p><span class="sg-product-price">${p.price!==null&&p.price>0?currency(p.price):'Price on request'}</span><span class="sg-stock ${ready?'in-stock':''}">${ready?`${p.quantity} currently listed in stock`:'Availability must be confirmed'}</span><p style="font-size:13px">Product pictures are from our own collection. Quantity and price may be updated at any time.</p><button type="button" class="btn" ${ready?`data-sg-add="${safeText(p.id)}"`:`data-sg-inquire="${safeText(p.id)}"`}>${ready?'Add to bag +':'Ask about this item ↗'}</button></div></div>`;$('sgProductDialog').showModal();}
 function persistCart(){try{localStorage.setItem('sg-shopping-bag-v1',JSON.stringify(cart));}catch(e){}renderCart();}
-function addToCart(id){const p=findProduct(id);if(!p||!isReady(p))return toast('Please ask us about availability');const current=cart[id]||0;if(current>=p.quantity)return toast('That is the maximum listed quantity');cart[id]=current+1;persistCart();toast(`${p.title} added to your bag`);}
+function addToCart(id){const p=findProduct(id);if(!p||!isReady(p))return toast('Please ask us about availability');const current=cart[id]||0;if(current>=p.quantity)return toast('That is the maximum listed quantity');cart[id]=current+1;persistCart();window.sgAnalytics?.track('add_to_bag',{product_id:p.id});toast(`${p.title} added to your bag`);}
 function renderCart(){for(const id of Object.keys(cart)){const p=findProduct(id);if(!p||!isReady(p))delete cart[id];else cart[id]=Math.min(cart[id],p.quantity);}const entries=Object.entries(cart).filter(([id,q])=>q>0&&findProduct(id));const count=entries.reduce((sum,[id,n])=>sum+n,0);$('count').textContent=count;$('cart').setAttribute('aria-label',`Cart, ${count} items`);$('sgCartItems').innerHTML=entries.length?entries.map(([id,q])=>{const p=findProduct(id);return `<div class="sg-cart-row"><img alt="" src="${safeText(safeSrc(p.image))}"><div><b>${safeText(p.title)}</b><small>${safeText(id)} · ${currency(p.price)} each</small><div class="sg-cart-controls"><button type="button" data-sg-minus="${safeText(id)}" aria-label="Decrease quantity">−</button><b>${q}</b><button type="button" data-sg-plus="${safeText(id)}" aria-label="Increase quantity">+</button><button type="button" class="sg-remove" data-sg-remove="${safeText(id)}">Remove</button></div></div><strong>${currency(p.price*q)}</strong></div>`;}).join(''):'<p class="sg-muted" style="padding:24px 0">Your bag is empty. Browse gifts and patches to find something fun!</p>';const total=entries.reduce((s,[id,n])=>s+findProduct(id).price*n,0);$('sgCartTotal').textContent=`Indicative subtotal: ${currency(total)} CAD`;$('sgInquiryCheckout').disabled=!entries.length;}
-function emailCart(){const entries=Object.entries(cart).filter(([id,q])=>q>0&&findProduct(id));if(!entries.length)return;const total=entries.reduce((s,[id,q])=>s+findProduct(id).price*q,0);const lines=['Hello Santa Gorgonzola,','','I would like to request these products:',...entries.map(([id,q])=>{const p=findProduct(id);return `${id} — ${p.title} × ${q} (${currency(p.price*q)})`;}),'',`Estimated subtotal: ${currency(total)} CAD`,'Please confirm current availability, final pricing, taxes and delivery/pickup before payment.','This is an inquiry, not a completed purchase.','','Thank you!'];window.location.href='mailto:santagorgonzola27@gmail.com?subject='+encodeURIComponent('Product order inquiry — Santa Gorgonzola')+'&body='+encodeURIComponent(lines.join('\n'));}
+function requestCart(){const entries=Object.entries(cart).filter(([id,q])=>q>0&&findProduct(id));if(!entries.length)return;const total=entries.reduce((s,[id,q])=>s+findProduct(id).price*q,0);const lines=[...entries.map(([id,q])=>{const p=findProduct(id);return `${id} — ${p.title} × ${q} (${currency(p.price*q)})`;}),'',`Estimated subtotal: ${currency(total)} CAD`,'Please confirm current availability, final pricing, taxes and delivery/pickup before payment.','This is an inquiry, not a completed purchase.'];window.sgInquiry.open({kind:'shopping_bag',subject:'Santa Gorgonzola — Shopping bag inquiry',title:'Send your order request',details:lines.join('\n')});}
 function renderStats(){const active=items.filter(isReady).length,needs=items.filter(x=>!isReady(x)).length,units=items.reduce((s,x)=>s+x.quantity,0),hidden=items.filter(x=>!x.visible).length;$('sgAdminStats').innerHTML=[['Products',items.length],['Ready to sell',active],['Total units',units],['Needs review',needs]].map(([label,val])=>`<div class="sg-stat"><b>${val}</b><small>${label}</small></div>`).join('');}
 function renderAdmin(){renderStats();const q=adminSearch.toLowerCase().trim();const list=items.filter(p=>[p.id,p.title,p.category,p.description].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.id.localeCompare(b.id));const shown=list.slice(0,adminVisibleCount);$('sgInventoryRows').innerHTML=shown.map(p=>`<div class="sg-inventory-row"><img loading="lazy" alt="" src="${safeText(safeSrc(p.image))}"><div class="sg-row-details"><strong title="${safeText(p.title)}">${safeText(p.title)}</strong><small>${safeText(p.id)} · ${safeText(p.category)}${p.visible?'':' · Hidden'}</small></div><div class="sg-row-price">${p.price!=null&&p.price>0?currency(p.price):'Price TBD'}</div><div class="sg-row-qty"><button type="button" data-sg-stock-minus="${safeText(p.id)}" aria-label="Decrease ${safeText(p.id)} stock">−</button><strong>${p.quantity}</strong><button type="button" data-sg-stock-plus="${safeText(p.id)}" aria-label="Increase ${safeText(p.id)} stock">+</button></div><div class="sg-row-actions"><button type="button" data-sg-edit="${safeText(p.id)}">Edit</button><button type="button" class="sg-danger" data-sg-delete="${safeText(p.id)}">Delete</button></div></div>`).join('')||'<p class="sg-muted">No inventory items found.</p>';$('sgAdminPageSummary').textContent=`Showing ${shown.length} of ${list.length} items`;$('sgAdminShowMore').hidden=shown.length>=list.length;}
 function renderAll(){renderCatalogue();renderCart();renderAdmin();}
@@ -714,6 +834,10 @@ async function importJSON(file){if(!confirm('Importing a backup REPLACES all cur
 async function bulkImport(files){const images=Array.from(files).filter(f=>f.type.startsWith('image/'));if(!images.length)return;let count=0;setStatus(`Processing ${images.length} images…`);for(const f of images){try{const image=await reduceImage(f);const id=nextSKU();const title=f.name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' ').trim().slice(0,110)||'New Product';items.unshift(normalize({id,title,category:'Other Gifts',description:'Please add product details, confirm price and quantity.',price:null,quantity:0,image,visible:false}));count++;}catch(e){console.warn('Skipped image',f.name,e);}}await saveDraft();renderAll();setStatus(`Added ${count} new photo products as hidden drafts. Edit their details, then publish.`);}
 function exportWebsite(){// Create a self-contained updated HTML from the ACTUAL uploaded main website; patch images remain in assets/patch_crops.
   const clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-sg-gtm-runtime]').forEach(el=>el.remove());
+  clone.querySelector('#sgAnalyticsBanner')?.setAttribute('hidden','');
+  clone.querySelectorAll('.sg-form-status,#sgInquirySummary').forEach(el=>{el.textContent='';el.setAttribute('hidden','');el.removeAttribute('data-state');});
+  clone.querySelectorAll('#orderForm,#sgInquiryForm').forEach(el=>el.removeAttribute('aria-busy'));
   const s=clone.querySelector('#sg-inventory-seed');
   const obj={revision:'published-'+new Date().toISOString(),products:items};
   s.textContent=JSON.stringify(obj).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
@@ -735,7 +859,7 @@ $('sgCatalogSort').addEventListener('change',e=>{sort=e.target.value;visibleCoun
 $('sgShowMore').addEventListener('click',()=>{visibleCount+=16;renderCatalogue();});
 $('sgAdminSearch').addEventListener('input',e=>{adminSearch=e.target.value;adminVisibleCount=40;renderAdmin();});
 $('sgAdminShowMore').addEventListener('click',()=>{adminVisibleCount+=40;renderAdmin();});
-$('sgInquiryCheckout').addEventListener('click',emailCart);
+$('sgInquiryCheckout').addEventListener('click',requestCart);
 $('sgAdminOpen').addEventListener('click',()=>{$('sgAdminDialog').showModal();if(!$('sgSKU').value)resetEditor();});
 $('sgProductEditor').addEventListener('submit',saveEditor);
 $('sgClearEditor').addEventListener('click',resetEditor);
